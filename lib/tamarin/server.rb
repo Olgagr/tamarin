@@ -1,3 +1,5 @@
+require "tamarin/connection"
+
 module Tamarin
 
 	class Server
@@ -9,15 +11,11 @@ module Tamarin
 		end
 
 		def start
-			socket = server.accept
-			data = socket.readpartial(1024)
-			puts data
-
-			socket.write "HTTP/1.1 200 OK\r\n"
-			socket.write "\r\n"
-			socket.write "hello\n"
-
-			socket.close
+			loop do
+				socket = server.accept
+				connection = Connection.new(socket)
+				connection.process
+			end
 		end
 
 	end
