@@ -1,0 +1,19 @@
+PATH
+  remote: .
+  specs:
+    tamarin (0.0.1)
+      http_parser.rb (~> 0.6.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    http_parser.rb (0.6.0)
+    rake (10.4.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bundler (~> 1.7)
+  rake (~> 10.0)
+  tamarin!
