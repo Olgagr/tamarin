@@ -22,6 +22,7 @@ module Tamarin
 			puts "parser #{parser.headers}" 
 			puts "parser #{parser.http_method}" 
 			puts "parser #{parser.request_url}" 
+
 			write_response
 			close			
 		end
