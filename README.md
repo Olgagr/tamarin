@@ -1,6 +1,6 @@
 # Tamarin
 
-TODO: Write a gem description
+Small and realy simple Ruby web server. It's not production ready, it's just my side-project to learn how to build your own web server. Created for fame and glory :P
 
 ## Installation
 
