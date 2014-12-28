@@ -6,14 +6,15 @@ module Tamarin
 
 		attr_accessor :server
 		
-		def initialize(port)
+		def initialize(port, app)
 			@server = TCPServer.new(port)
+			@app = app
 		end
 
 		def start
 			loop do
 				socket = server.accept
-				connection = Connection.new(socket)
+				connection = Connection.new(socket, @app)
 				connection.process
 			end
 		end

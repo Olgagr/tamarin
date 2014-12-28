@@ -1,14 +1,16 @@
 require 'http/parser'
+require 'tamarin/statuses'
 
 module Tamarin
 	
 	class Connection
 
-		attr_accessor :socket, :parser
+		attr_accessor :socket, :parser, :app
 		
-		def initialize(socket)
+		def initialize(socket, app)
 			@socket = socket
 			@parser = Http::Parser.new(self)
+			@app = app
 		end
 
 		def process
@@ -30,9 +32,12 @@ module Tamarin
 		private
 
 		def write_response
-			socket.write "HTTP/1.1 200 OK\r\n"
+			status, headers, body = app.call
+
+			socket.write "HTTP/1.1 #{status} #{HTTP_STATUS_CODES[status]}\r\n"
+			socket.write headers.map { |k,v| "#{k}:#{v}\r\n" }.join
 			socket.write "\r\n"
-			socket.write "hello\n"			
+			socket.write "#{body.join}\n"
 		end
 
 		def close
