@@ -38,6 +38,7 @@ module Tamarin
 			socket.write headers.map { |k,v| "#{k}:#{v}\r\n" }.join
 			socket.write "\r\n"
 			socket.write "#{body.join}\n"
+			body.close if body.respond_to? :close
 		end
 
 		def close
