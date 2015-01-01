@@ -13,7 +13,7 @@ module Tamarin
 		def parse
 			env = {}
 			parser.headers.each do |k, v|
-				key = "HTTP_#{header[k].upcase.tr('-', '_')}"
+				key = "HTTP_#{k.upcase.tr('-', '_')}"
 				env[key] = v
 			end
 			env['PATH_INFO'] = parser.request_url

@@ -1,5 +1,6 @@
 require 'http/parser'
 require 'tamarin/response'
+require 'tamarin/request'
 
 module Tamarin
 	
@@ -21,7 +22,8 @@ module Tamarin
 		end
 
 		def on_message_complete
-			response = Response.new(app, socket)
+			env = Request.new(parser).parse
+			response = Response.new(app, socket, env)
 			response.respond
 			close			
 		end

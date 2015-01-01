@@ -4,15 +4,16 @@ module Tamarin
 
 	class Response
 		
-		attr_reader :app, :socket
+		attr_reader :app, :socket, :env
 
-		def initialize(app, socket)
+		def initialize(app, socket, env)
 			@app = app
 			@socket = socket
+			@env = env
 		end
 
 		def respond
-			status, headers, body = app.call
+			status, headers, body = app.call(env)
 
 			socket.write "HTTP/1.1 #{status} #{HTTP_STATUS_CODES[status]}\r\n"
 			socket.write headers.map { |k,v| "#{k}:#{v}\r\n" }.join
