@@ -20,7 +20,18 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To run server:
+
+```ruby
+bundle exec ruby lib/tamarin
+```
+
+Then, in other terminal run:
+
+```ruby
+curl http://localhost:3030
+```
+
 
 ## Contributing
 
