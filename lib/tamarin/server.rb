@@ -12,8 +12,7 @@ module Tamarin
 		end
 
 		def start
-			loop do
-				socket = server.accept
+			Socket.accept_loop(server) do |socket|
 				connection = Connection.new(socket, @app)
 				connection.process
 			end
